@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentExamController;
+use App\Http\Controllers\SectionStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +29,17 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/student/{student}/exam/{exam}', StudentExamController::class)->name('student.exam')->middleware('signed');
+
+
+//Sections
+Route::resource("sections",SectionController::class);
+Route::get("sections/status/{section}",SectionStatusController::class)->name("sections.status");
+
+  //quizzes
+  Route::resource("exams",ExamController::class);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
