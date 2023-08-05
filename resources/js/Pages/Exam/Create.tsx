@@ -111,7 +111,7 @@ const Create = ({ auth, sections }: CreateProps) => {
                                 <div>
                                     <InputLabel
                                         htmlFor="total_time"
-                                        value="Total Time"
+                                        value="Expire Date"
                                     />
 
                                     <TextInput
@@ -138,7 +138,7 @@ const Create = ({ auth, sections }: CreateProps) => {
                                 <div>
                                     <InputLabel
                                         htmlFor="expiry_date"
-                                        value="Total Time"
+                                        value="Expire Date"
                                     />
 
                                     <TextInput

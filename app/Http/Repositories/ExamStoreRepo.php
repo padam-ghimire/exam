@@ -18,7 +18,7 @@ class ExamStoreRepo
      */
     public function store(Request $request) : void
     {
-        $quiz = Auth::user()->exams()->create($request->only(
+        $exam = Auth::user()->exams()->create($request->only(
             "title","description","expiry_date","total_time"
         ));
 
@@ -32,7 +32,7 @@ class ExamStoreRepo
             $questions = array_merge($section->questions->pluck('id')->toArray(),$questions);
         }
 
-        event(new ExamCreatedEvent($quiz));
-        $quiz->questions()->sync($questions);
+        event(new ExamCreatedEvent($exam));
+        $exam->questions()->sync($questions);
     }
 }

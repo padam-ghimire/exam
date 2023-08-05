@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Exam;
+use App\Models\Student;
+use App\Models\ExamResult;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 class StudentExamController extends Controller
 {
      /**
@@ -11,17 +16,17 @@ class StudentExamController extends Controller
      */
     public function __invoke(Student $student,Exam $exam)
     {
-        if($quiz->expiry_date->lt(Carbon::now())){
+        if($exam->expiry_date->lt(Carbon::now())){
             return Redirect::route("home")->with('message','Exam is already expired');
         };
-        $studentQuiz = StudentExamResult::where('student_id',$student->id)
-                        ->where('exam_id',$quiz->id)
+        $studentExam = ExamResult::where('student_id',$student->id)
+                        ->where('exam_id',$exam->id)
                         ->first();
-        if($studentQuiz){
+        if($studentExam){
             return Redirect::route("home")->with('message','You have already attempted the exam.');
         }
         return Inertia::render('Student/StartExam',[
-            'exam' => $quiz->load("questions.answers:id,question_id,option"),
+            'exam' => $exam->load("questions.answers:id,question_id,option"),
             'student' => $student
         ]);
     }

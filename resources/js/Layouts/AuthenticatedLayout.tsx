@@ -1,16 +1,31 @@
-import { useState, PropsWithChildren, ReactNode } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
-import { User } from '@/types';
+import { useState, PropsWithChildren, ReactNode, useEffect } from "react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import Dropdown from "@/Components/Dropdown";
+import NavLink from "@/Components/NavLink";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { Link, usePage } from "@inertiajs/react";
+import { User } from "@/types";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Authenticated({ user, header, children }: PropsWithChildren<{ user: User, header?: ReactNode }>) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
+
+    const { flash } = usePage().props;
+
+    useEffect(() => {
+
+        // @ts-ignore
+        if (flash?.message) {
+            // @ts-ignore
+            toast(flash.message, {
+                position: "top-right",
+            });
+        }
+    }, []);
     return (
         <div className="min-h-screen bg-gray-100">
+        <Toaster />
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">

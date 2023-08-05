@@ -8,7 +8,7 @@ export interface Section {
 export interface Question {
     id: number;
     title: string;
-    explanation: string;
+    description: string;
     is_active: boolean;
     isMultiple: boolean;
     section_id: string;

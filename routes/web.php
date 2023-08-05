@@ -4,8 +4,10 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ExamSubmitController;
 use App\Http\Controllers\StudentExamController;
 use App\Http\Controllers\SectionStatusController;
 
@@ -20,17 +22,20 @@ use App\Http\Controllers\SectionStatusController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//     ]);
+// });
+
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/student/{student}/exam/{exam}', StudentExamController::class)->name('student.exam')->middleware('signed');
+Route::post('/student/{student}/exam/{exam}/submit', ExamSubmitController::class)->name('student.exam.submit');
 
 
 //Sections
