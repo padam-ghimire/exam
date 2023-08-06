@@ -3,18 +3,18 @@
 Welcome to the Examination Application! This application streamlines the process of conducting physics and chemistry examinations through questionnaires. Administrators can create questionnaires, view active questionnaires, send invitations, and students can submit their responses.
 
 ## Technologies
-- Laravel (10.10) 
-- React (18.0.28)
-- Inetria (1.0.0)
-- Tailwindcss (3.3.3)
+- [Laravel (10.10)](https://laravel.com/docs/10.x)
+- [React (18.0.28)](https://react.dev/)
+- [Inetriajs (1.0.0)](https://inertiajs.com/)
+- [Tailwindcss (3.3.3)](https://tailwindcss.com/)
 
 ### Requirements
 
-- Composer (2.5.1)
-- PHP (^8.1)
-- Npm (9.5.1)
-- Node (18.16.0)
-- Database (MySQL)
+- [Composer (2.5.1)](https://getcomposer.org/)
+- [PHP (^8.1)](https://www.php.net/downloads) 
+- [NPM (9.5.1)](https://www.npmjs.com/)
+- [Node (18.16.0)](https://nodejs.org/en)
+- [Database (MySQL)](https://www.mysql.com/)
 
 ### Installation
 
@@ -39,22 +39,30 @@ Welcome to the Examination Application! This application streamlines the process
    ```bash
     cp .env.example .env
     # Configure your database settings in .env
+5. Add mail configuration in .env (for development,you can use) :
+- [MailTrap](https://mailtrap.io/)
 
-5. Generate the application key:
+6. Generate the application key:
    ```bash
    php artisan key:generate
-6. Run migrations and seeders:
+7. Run migrations and seeders:
    ```bash
    php artisan migrate --seed
-7. Start the development server:
+8. Start the development server:
    ```bash
    php artisan serve
-8. For Development compile:
+
+9. For Development compile:
     ```bash
-   npm run dev
-8. For Production compile:
+    npm run dev
+10. For Production compile:
     ```bash
-   npm run build
+     npm run build
+11. Open any browser and hit:
+    - [https://localhost:8000/login](https://localhost:8000/login)
+   # default username : admin@admin.com
+   # default password : password
+
 
 ## Usage
 1. Create a new exam by providing a title, time expiry date and description.
