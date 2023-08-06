@@ -7,7 +7,7 @@ Welcome to the Examination Application! This application streamlines the process
 - [React (18.0.28)](https://react.dev/)
 - [Inetriajs (1.0.0)](https://inertiajs.com/)
 - [Tailwindcss (3.3.3)](https://tailwindcss.com/)
-- [Typescript] (5.0.2)(https://www.typescriptlang.org/)
+- [Typescript (5.0.2)](https://www.typescriptlang.org/)
 
 ### Requirements
 
