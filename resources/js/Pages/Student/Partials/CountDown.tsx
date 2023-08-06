@@ -33,12 +33,15 @@ const CountDown: FC<CountDownProps> = ({ total_time, handleExamSubmit }) => {
             <div className="flex gap-5">
                 <div>
                     <span className="countdown font-mono text-4xl">
+
+                         {/* @ts-ignore */}
                         <span style={{ "--value": minutes }}></span>
                     </span>
                     min
                 </div>
                 <div>
                     <span className="countdown font-mono text-4xl">
+                         {/* @ts-ignore */}
                         <span style={{ "--value": seconds }}></span>
                     </span>
                     sec

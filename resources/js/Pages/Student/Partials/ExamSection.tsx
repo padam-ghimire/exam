@@ -16,6 +16,7 @@ interface StudentAnswer {
 }
 
 const ExamSection: FC<ExamSectionProps> = ({ exam, student }) => {
+
     const [finished, setFinished] = useState<boolean>(false);
     const [disabled, setDisabled] = useState<boolean>(false);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

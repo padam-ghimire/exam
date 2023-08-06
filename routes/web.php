@@ -7,9 +7,13 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ExamSubmitController;
 use App\Http\Controllers\StudentExamController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SectionStatusController;
+use App\Http\Controllers\QuestionStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,18 +42,30 @@ Route::get('/student/{student}/exam/{exam}', StudentExamController::class)->name
 Route::post('/student/{student}/exam/{exam}/submit', ExamSubmitController::class)->name('student.exam.submit');
 
 
-//Sections
-Route::resource("sections",SectionController::class);
-Route::get("sections/status/{section}",SectionStatusController::class)->name("sections.status");
-
-  //quizzes
-  Route::resource("exams",ExamController::class);
 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+
+        //Sections
+    Route::resource("sections",SectionController::class);
+    Route::get("sections/status/{section}",SectionStatusController::class)->name("sections.status");
+
+    //exams
+    Route::resource("exams",ExamController::class);
+    //questions
+    Route::resource("questions",QuestionController::class);
+    Route::get("questions/status/{question}",QuestionStatusController::class)->name("questions.status");
+
+    //students
+    Route::resource("students",StudentController::class);
+    Route::get("stundents/subscription/{student}",SubscriptionController::class)->name("students.subscription");
+
+
 });
 
 require __DIR__.'/auth.php';

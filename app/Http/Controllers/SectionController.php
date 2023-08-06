@@ -34,6 +34,15 @@ class SectionController extends Controller
         return Inertia::render('Section/Create');
     }
 
+     /**
+     * @param SectionStoreRequest $request
+     * @return RedirectResponse
+     */
+    public function store(SectionStoreRequest $request): RedirectResponse
+    {
+        Auth::user()->sections()->create($request->validated());
+        return Redirect::route('sections.index')->with('success', 'Section created.');
+    }
 
     /**
      * @param Section $section
@@ -66,14 +75,6 @@ class SectionController extends Controller
 
     } 
 
-    public function store(SectionStoreRequest $request):RedirectResponse
-    {
-        $data = $request->validated();
-        $data['user_id']= Auth::id();
-
-        Section::create($data);
-        return Redirect::route('sections.index')->with('success', 'New Sectin  added.');
-
-    }
+   
 
 }
