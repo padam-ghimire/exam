@@ -37,6 +37,5 @@ class ExamSubmissionTest extends TestCase
         // Assertions
         $response->assertRedirect(route('home'));
 
-        // Add more assertions if needed
     }
 }
