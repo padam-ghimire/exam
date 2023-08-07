@@ -27,7 +27,14 @@ class ExamSubmitController extends Controller
             if($status){ $correctAnswerCount++;}
         }
 
-        $percentage = round($correctAnswerCount / $exam->questions->count() * 100,2);
+        // $percentage = round($correctAnswerCount / $exam->questions->count() * 100,2);
+        $questionCount = $exam->questions->count();
+
+            if ($questionCount > 0) {
+                $percentage = round($correctAnswerCount / $questionCount * 100, 2);
+            } else {
+                $percentage = 0; // or any default value you want
+            }
 
         ExamResult::create([
             'student_id' => $student->id,

@@ -39,7 +39,7 @@ class ExamCreatedNotification extends Notification implements ShouldQueue
     {
         $signedUrl = URL::signedRoute('student.exam',['exam' => $this->exam->id,'student' => $notifiable->id]);
         return (new MailMessage)
-                    ->line('New Exam All')
+                    ->line('New Exam Added')
                     ->action('Click to Perform', $signedUrl)
                     ->line('Thank you for using our application!');
     }
